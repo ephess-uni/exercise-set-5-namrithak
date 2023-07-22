@@ -9,6 +9,7 @@ def main(infile):
     """Call line_count with the infile argument."""
     line_count(infile)
 
+import argparse
 
 if __name__ == "__main__":
     # Create your argument parser object here.
