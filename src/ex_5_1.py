@@ -9,6 +9,7 @@ def main(infile):
     """Call line_count with the infile argument."""
     line_count(infile)
 
+import argparse
 
 if __name__ == "__main__":
     # Create your argument parser object here.
@@ -17,4 +18,11 @@ if __name__ == "__main__":
     # Tests will run your command using a system call.
     # To test your program with arguments, run it from the command line
     # (see README.md for more details)
-    pass
+    o = argparse.ArgumentParser(description="This program prints the number of lines in infile.")
+    
+    o.add_argument("infile", type=argparse.FileType('r'))
+    
+    o_args = o.parse_args()
+
+    if o_args.infile:
+        line_count(o_args.infile.name)

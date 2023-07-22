@@ -13,6 +13,7 @@ try:
 except ImportError:
     from util import get_repository_root
 
+import os
 
 if __name__ == "__main__":
 
@@ -21,6 +22,12 @@ if __name__ == "__main__":
     INFILE = root_dir / "data" / "ex_5_2-data.csv"
     OUTFILE = root_dir / "outputs" / "ex_5_2-processed.csv"
 
-    # Complete the data processing steps using numpy here.
-
-    # Save the output to OUTFILE using numpy routines.
+    os.makedirs(root_dir / "outputs", exist_ok=True)
+    
+    loaded_data = np.loadtxt(INFILE)
+    
+    mean_of_loaded_data = np.mean(loaded_data)
+    mean_of_loaded_data_0 = loaded_data - mean_of_loaded_data
+    dvision_std = np.std(mean_of_loaded_data_0)
+    processed = mean_of_loaded_data_0 / dvision_std
+    np.savetxt(OUTFILE, processed,fmt='%.2e')
